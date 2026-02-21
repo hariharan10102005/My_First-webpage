@@ -21,33 +21,28 @@ def calculate():
     else:
         price = 0
 
-    qty = request.form.get('qty',0)
-    
-    
-   qty =int(qty_input) if qty_input else 0
-except ValueError:
-       qty = 0
+    qty = request.form.get('qty', 0)
 
+    try:
+        qty = int(qty) if qty else 0
+    except ValueError:
+        qty = 0    
 
-    
     # Bill calculation
     total = price * qty
-return render_template('index.html', total=total,
-                      item=item, qty=qty)
-    
+    return render_template('index.html', total=total,
+item=item, qty=qty)
+
     return f"""
-    <h2>--- Bill Receipt ---</h2>
-    <p>Item: {item}</p>
-    <p>Price: Rs.{price}</p>
-    <p>Quantity: {qty}</p>
-    <hr>
-    <h3>Total Amount: Rs.{total}</h3>
-    <a href="/">Next Bill</a>
-    """
+<h2>--- Bill Receipt ---</h2>
+<p>Item: {item}</p>
+<p>Price: Rs.{price}</p>
+<p>Quantity: {qty}</p>
+<hr>
+<h3>Total Amount: Rs.{total}</h3>
+<a href="/">Next Bill</a>
+"""
 
 
 if __name__ == '__main__':
-
     app.run()
-
-
