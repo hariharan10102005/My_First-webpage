@@ -32,6 +32,8 @@ except ValueError:
     
     # Bill calculation
     total = price * qty
+return render_template('index.html', total=total,
+                      item=item, qty=qty)
     
     return f"""
     <h2>--- Bill Receipt ---</h2>
@@ -47,4 +49,5 @@ except ValueError:
 if __name__ == '__main__':
 
     app.run()
+
 
