@@ -1,61 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-        <title>INSTEND BILLING</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Billing System</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f4; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 300px; text-align: center; }
+        select, input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+        button { background-color: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #218838; }
+        .result { margin-top: 20px; font-weight: bold; color: #333; }
+    </style>
 </head>
+<body>
+    <div class="container">
+        <h2>Billing System</h2>
+        <form action="/calculate" method="POST">
+            <select name="item" required>
+                <option value="Shirt">Shirt - ₹500</option>
+                <option value="Pant">Pant - ₹700</option>
+                <option value="T-Shirts">T-Shirts - ₹300</option>
+            </select>
+            <input type="number" name="qty" placeholder="Enter Quantity" required min="1">
+            <button type="submit">Calculate Total</button>
+        </form>
 
-
-        
-
- <body bgcolor="black" text="white">
-        
- 
- <center>
-        <h1>GLOBAL CINEMAS</h1>
-        <hr>
-</center>
-
-      <img src="static/12.jpg" alt="">
-
-<center>
-
-
-        
-
-
-
-
-
-<form action="/calculate" method="POST">
-        <table>
-    <p>
-        <Label>Select Product:</Label><br>
-         <select name="item" id="item">
-                <option value="Primium Ticket">Primium Ticket - Rs210</option>
-                <option value="First Class Ticket">First Class Ticket - Rs190</option>
-                <option value="Second Class Ticket">Second Class Ticket - Rs150</option>
-                <option value="Lower Class Ticket">Lower Class Ticket - Rs120</option>
-         </select>
-    </p>
-
-    <p>
-        <Label>How many tickets?</Label><br>
-        <input type="number" name="qty" required>
-    </p>
-    
-
-    <p>
-       <button type="submit" value ="calculate">Calculate</button>
-    </p>
-</table>
-</form>
-
-
-</center>
-
-
-</html>
-
-
+        {% if total %}
+        <div class="result">
+            <p>Item: {{ item }}</p>
+            <p>Quantity: {{ qty }}</p>
+            <hr>
+            <h3>Total Amount: ₹{{ total }}</h3>
+        </div>
+        {% endif %}
+    </div>
 </body>
-
+</html>
