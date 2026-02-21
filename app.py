@@ -21,7 +21,8 @@ def calculate():
     else:
         price = 0
 
-    qty = request.form.get('qty')
+    qty = request.form.get('qty',0)
+    
     
     if qty:
         qty = int(qty)
@@ -45,4 +46,5 @@ def calculate():
 
 
 if __name__ == '__main__':
+
     app.run()
