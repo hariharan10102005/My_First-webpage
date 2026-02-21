@@ -24,10 +24,9 @@ def calculate():
     qty = request.form.get('qty',0)
     
     
-    if qty:
-        qty = int(qty)
-    else:
-        qty = 0
+   qty =int(qty_input) if qty_input else 0
+except ValueError:
+       qty = 0
 
 
     
@@ -48,3 +47,4 @@ def calculate():
 if __name__ == '__main__':
 
     app.run()
+
