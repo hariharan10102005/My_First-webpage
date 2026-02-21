@@ -8,6 +8,12 @@ def index():
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
+   qty_input = request.form.get('qty', '0')
+
+    if qty_input and qty_input.isdigit():
+        qty=int(qty_input)
+    else:
+        qty=0
     # Form
     item = request.form.get('item')
     if item == 'Primium Ticket':
@@ -19,14 +25,7 @@ def calculate():
     elif item == 'Lower Class Ticket':
         price = 120
     else:
-        price = 0
-
-    qty = request.form.get('qty', 0)
-
-    try:
-        qty = int(qty) if qty else 0
-    except ValueError:
-        qty = 0    
+        price = 0   
 
     # Bill calculation
     total = price * qty
@@ -45,4 +44,5 @@ item=item, qty=qty)
 
 
 if __name__ == '__main__':
+
     app.run()
